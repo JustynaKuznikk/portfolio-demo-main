@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista projektów</title>
+</head>
+<body>
+<div>
+    <h2>
+        <a th:href="@{/projects/add}">Dodaj nowy projekt</a>
+    </h2>
+    <table>
+        <tr>
+            <th>Nazwa</th>
+            <th>Adres url</th>
+            <th>Opis</th>
+        </tr>
+        <tr th:each="project : ${userProjects}">
+            <td th:text="${project.name}"></td>
+            <td th:text="${project.url}"></td>
+            <td th:text="${project.description}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Twój profil</title>
+</head>
+<body>
+<section>
+    <h1>Twój profil <span th:text="${userSummary.username}"></span></h1>
+</section>
+<section>
+    <form th:action="@{/profile/edit}" th:method="post" th:object="${editUserCommand}">
+        <div>
+            <label>Imię:
+                <input type="text" th:field="*{firstName}" name="firstName"/>
+            </label>
+            <div th:if="${#fields.hasErrors('firstName')}">
+                <span th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></span>
+            </div>
+        </div>
+        <div>
+            <label>Nazwisko:
+                <input type="text" th:field="*{lastName}" name="lastName"/>
+            </label>
+            <div th:if="${#fields.hasErrors('lastName')}">
+                <span th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></span>
+            </div>
+        </div>
+        <div>
+            <label>Data urodzenia:
+                <input type="date" th:field="*{birthDate}" name="birthDate"/>
+            </label>
+            <div th:if="${#fields.hasErrors('birthDate')}">
+                <span th:each="err : ${#fields.errors('birthDate')}" th:text="${err}"></span>
+            </div>
+        </div>
+        <div>
+            <button type="submit">Zapisz</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>

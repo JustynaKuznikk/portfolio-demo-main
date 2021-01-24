@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj projekt</title>
+</head>
+<body>
+<h1>Dodaj projekt</h1>
+<div>
+    <form th:action="@{/projects/add}" th:method="post" th:object="${createProjectCommand}">
+        <fieldset>
+            <div>
+                <label>Nazwa:
+                    <input type="text" th:field="*{name}" name="name" required/>
+                </label>
+                <div th:if="${#fields.hasErrors('name')}">
+                    <span th:each="err : ${#fields.errors('name')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>Adres:
+                    <input type="url" th:field="*{url}" name="name"/>
+                </label>
+                <div th:if="${#fields.hasErrors('url')}">
+                    <span th:each="err : ${#fields.errors('url')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>Opis:
+                    <textarea th:field="*{description}"></textarea>
+                </label>
+                <div th:if="${#fields.hasErrors('description')}">
+                    <span th:each="err : ${#fields.errors('description')}" th:text="${err}"></span>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <button type="submit">Dodaj projekt</button>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
